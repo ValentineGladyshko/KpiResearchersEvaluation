@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5CB270CE-BD75-4889-8085-73C6C246ED8F}</ProjectGuid>
+    <ProjectGuid>{F9380EBC-14CB-44FC-8AD6-7DB046DAD7DB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebLibrary</RootNamespace>
-    <AssemblyName>WebLibrary</AssemblyName>
+    <RootNamespace>DatabaseLibrary</RootNamespace>
+    <AssemblyName>DatabaseLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,8 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,8 +50,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WebSocket.cs" />
+    <Compile Include="DatabaseModel\Chairs.cs" />
+    <Compile Include="DatabaseModel\Faculties.cs" />
+    <Compile Include="DatabaseModel\GoogleSchoolars.cs" />
+    <Compile Include="DatabaseModel\KpiResearchersContext.cs" />
+    <Compile Include="DatabaseModel\OrcidAccounts.cs" />
+    <Compile Include="DatabaseModel\PublicationReasearchers.cs" />
+    <Compile Include="DatabaseModel\ResearcherOrcids.cs" />
+    <Compile Include="DatabaseModel\Researchers.cs" />
+    <Compile Include="DatabaseModel\ResearcherScopuses.cs" />
+    <Compile Include="DatabaseModel\ScopusAccountPublications.cs" />
+    <Compile Include="DatabaseModel\ScopusAccounts.cs" />
+    <Compile Include="DatabaseModel\ScopusPublications.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

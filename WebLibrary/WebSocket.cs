@@ -26,7 +26,7 @@ namespace KpiResearchersEvaluation.WebLibrary
                 response.EnsureSuccessStatusCode();
                 return await response.Content.ReadAsStringAsync();
             }
-            catch (HttpRequestException e)
+            catch (HttpRequestException)
             {
                 return string.Empty;
             }
