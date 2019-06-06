@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,6 +40,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -50,23 +56,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseModel\Chairs.cs" />
-    <Compile Include="DatabaseModel\Faculties.cs" />
-    <Compile Include="DatabaseModel\GoogleSchoolars.cs" />
+    <Compile Include="DatabaseModel\Account.cs" />
+    <Compile Include="DatabaseModel\AccountPublication.cs" />
+    <Compile Include="DatabaseModel\Chair.cs" />
+    <Compile Include="DatabaseModel\Faculty.cs" />
     <Compile Include="DatabaseModel\KpiResearchersContext.cs" />
-    <Compile Include="DatabaseModel\OrcidAccounts.cs" />
-    <Compile Include="DatabaseModel\PublicationReasearchers.cs" />
-    <Compile Include="DatabaseModel\ResearcherOrcids.cs" />
-    <Compile Include="DatabaseModel\Researchers.cs" />
-    <Compile Include="DatabaseModel\ResearcherScopuses.cs" />
-    <Compile Include="DatabaseModel\ScopusAccountPublications.cs" />
-    <Compile Include="DatabaseModel\ScopusAccounts.cs" />
-    <Compile Include="DatabaseModel\ScopusPublications.cs" />
+    <Compile Include="DatabaseModel\OrcidAccount.cs" />
+    <Compile Include="DatabaseModel\OrcidPublication.cs" />
+    <Compile Include="DatabaseModel\Publication.cs" />
+    <Compile Include="DatabaseModel\Researcher.cs" />
+    <Compile Include="DatabaseModel\ResearcherAccount.cs" />
+    <Compile Include="DatabaseModel\ResearcherOrcid.cs" />
+    <Compile Include="DatabaseModel\Type.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AccountPublicationRepository.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="Repositories\ChairRepository.cs" />
+    <Compile Include="Repositories\EFUnitOfWork.cs" />
+    <Compile Include="Repositories\FacultyRepository.cs" />
+    <Compile Include="Repositories\OrcidAccountRepository.cs" />
+    <Compile Include="Repositories\OrcidPublicationRepository.cs" />
+    <Compile Include="Repositories\PublicationRepository.cs" />
+    <Compile Include="Repositories\ResearcherAccountRepository.cs" />
+    <Compile Include="Repositories\ResearcherOrcidRepository.cs" />
+    <Compile Include="Repositories\ResearcherRepository.cs" />
+    <Compile Include="Repositories\TypeRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.12.0\build\NUnit.props'))" />
+  </Target>
 </Project>

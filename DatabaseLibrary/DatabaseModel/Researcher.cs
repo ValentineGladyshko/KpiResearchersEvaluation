@@ -1,4 +1,4 @@
-namespace KpiResearchersEvaluation.DatabaseLibrary.DatabaseModel
+namespace DatabaseLibrary.DatabaseModel
 {
     using System;
     using System.Collections.Generic;
@@ -6,17 +6,15 @@ namespace KpiResearchersEvaluation.DatabaseLibrary.DatabaseModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Researchers
+    public partial class Researcher
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Researchers()
+        public Researcher()
         {
-            PublicationReasearchers = new HashSet<PublicationReasearchers>();
-            ResearcherOrcids = new HashSet<ResearcherOrcids>();
-            ResearcherScopuses = new HashSet<ResearcherScopuses>();
+            ResearcherAccounts = new HashSet<ResearcherAccount>();
+            ResearcherOrcids = new HashSet<ResearcherOrcid>();
         }
 
-        [Key]
         public int ResearcherId { get; set; }
 
         [StringLength(50)]
@@ -30,15 +28,12 @@ namespace KpiResearchersEvaluation.DatabaseLibrary.DatabaseModel
 
         public int ChairId { get; set; }
 
-        public virtual Chairs Chairs { get; set; }
+        public virtual Chair Chair { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PublicationReasearchers> PublicationReasearchers { get; set; }
+        public virtual ICollection<ResearcherAccount> ResearcherAccounts { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ResearcherOrcids> ResearcherOrcids { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ResearcherScopuses> ResearcherScopuses { get; set; }
+        public virtual ICollection<ResearcherOrcid> ResearcherOrcids { get; set; }
     }
 }

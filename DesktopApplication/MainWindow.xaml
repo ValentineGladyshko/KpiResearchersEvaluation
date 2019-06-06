@@ -1,12 +1,488 @@
-﻿<Window x:Class="KpiResearchersEvaluation.DesktopApplication.MainWindow"
+﻿<Window x:Class="DesktopApplication.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="495" Width="880">
+    <Window.Resources>
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Opacity" Value="1.0"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Background" Value="#0F000000"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="10 0 10 0"/>
+        </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
+
+
+    <TabControl Margin="2">
+        <TabItem Name="Faculties" Header="Факультети">
+            <TabItem.Content>
+                <Grid>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.475*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>                            
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>                            
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14"
+                                   Text="Факультет:" Width="Auto"></TextBlock>
+                        <ComboBox Name="FacultyBox" Grid.Row="0" Grid.Column="1"
+                                  FontSize="14" MinWidth="100" IsEditable="False">
+                            
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontSize="14"
+                                               Text="{Binding Path=FacultyName}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>                        
+                        <Button MinWidth="180" Name="FacultyCreateButton" Grid.Row="1" Grid.Column="0"
+                                Margin="10 10 10 0" Grid.ColumnSpan="2" Content="Створити факультет"
+                                HorizontalAlignment="Center"></Button>
+                        
+                        <Button MinWidth="180" Name="FacultyEditButton" Grid.Row="2" Grid.Column="0"
+                                Grid.ColumnSpan="2" Margin="10 10 10 0" Content="Редагувати факультет"
+                                HorizontalAlignment="Center"></Button>
+                        
+                        <Button MinWidth="180" Name="FacultyDeleteButton" Grid.Row="3" Grid.Column="0"
+                                Grid.ColumnSpan="2" Content="Видалити факультет" VerticalAlignment="Top"
+                                HorizontalAlignment="Center" Margin="10 10 10 0"></Button>
+
+                    </Grid>
+                    <GridSplitter Grid.Column="1" ShowsPreview="False" Width="5"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ListBox Name="ListBoxChair" Grid.Row="1" Background="{x:Null}"
+                                 BorderThickness="0" HorizontalContentAlignment="Stretch"
+                                 ScrollViewer.CanContentScroll="False"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>                                            
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" FontSize="14"
+                                                   Text="{Binding Path=ChairName}" 
+                                                   HorizontalAlignment="Center" Margin="2"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="14"
+                                                   Text="Google Schoolar" HorizontalAlignment="Center"
+                                                   Margin="2"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="2" FontSize="14"
+                                                   Text="Scopus" HorizontalAlignment="Center"
+                                                   Margin="2"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="3" FontSize="14"
+                                                   Text="Publons" HorizontalAlignment="Center"
+                                                   Margin="2"/>
+                                        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14"
+                                                   Text="Індекс Гірша:"
+                                                   Margin="2"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="0" FontSize="14"
+                                                   Text="Індекс Гірша за 5 років:"
+                                                   Margin="2"/>
+                                        <TextBlock Grid.Row="2" Grid.Column="1" FontSize="14"
+                                                   Text="{Binding Path=GoogleHIndex}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="1" FontSize="14"
+                                                   Text="{Binding Path=GoogleHIndex5}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+                                        
+                                        <TextBlock Grid.Row="2" Grid.Column="2" FontSize="14"
+                                                   Text="{Binding Path=ScopusHIndex}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="2" FontSize="14"
+                                                   Text="{Binding Path=ScopusHIndex5}"
+                                                   Margin="2" HorizontalAlignment="Center"/>                                        
+                                        <TextBlock Grid.Row="2" Grid.Column="3" FontSize="14"
+                                                   Text="{Binding Path=PublonsHIndex}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="3" FontSize="14"
+                                                   Text="{Binding Path=PublonsHIndex5}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+                                        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>                                                
+                                            </Grid.ColumnDefinitions>
+                                            <Button Click="ChairDeleteButtonOnClick" MinWidth="100"
+                                                Grid.Column="1" Name="DeleteButton"
+                                                Tag="{Binding Path=ChairId}" Content="Видалити"
+                                                Margin="2"></Button>
+                                            <Button Click="ChairEditButtonOnClick" MinWidth="100"
+                                                Grid.Column="0" Name="EditButton"
+                                                Tag="{Binding Path=ChairId}" Content="Редагувати"
+                                                Margin="2"></Button>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Button Name="ChairFacultyCreateButton" Margin="2 0 0 0" 
+                                Content="Створити кафедру" Grid.Row="2"></Button>
+
+                    </Grid>
+                </Grid>
+            </TabItem.Content>
+        </TabItem>
+
+        <TabItem Name="Chairs" Header="Кафедри">
+            <TabItem.Content>
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.475*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>                            
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14"
+                                   Text="Кафедра:" Width="Auto"></TextBlock>
+                        <ComboBox Name="ChairBox" Grid.Row="0" Grid.Column="1"
+                                  FontSize="14" MinWidth="100" IsEditable="False">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontSize="14"
+                                               Text="{Binding Path=ChairName}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>                        
+                        
+                        <Button MinWidth="180" Name="ChairCreateButton" Grid.Row="1" Grid.Column="0"
+                                Margin="10 10 10 0" Grid.ColumnSpan="2" Content="Створити кафедру"
+                                HorizontalAlignment="Center"></Button>
+
+                        <Button MinWidth="180" Name="ChairEditButton" Grid.Row="2" Grid.Column="0"
+                                Grid.ColumnSpan="2" Margin="10 10 10 0" Content="Редагувати кафедру"
+                                HorizontalAlignment="Center"></Button>
+
+                        <Button MinWidth="180" Name="ChairDeleteButton" Grid.Row="3" Grid.Column="0"
+                                Grid.ColumnSpan="2" Content="Видалити кафедру" VerticalAlignment="Top"
+                                HorizontalAlignment="Center" Margin="10 10 10 0"></Button>
+
+                    </Grid>
+                    <GridSplitter Grid.Column="1" ShowsPreview="False" Width="5"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ListBox Name="ListBoxChairResearcher" Grid.Row="1" Background="{x:Null}"
+                                 BorderThickness="0" HorizontalContentAlignment="Stretch"
+                                 ScrollViewer.CanContentScroll="False"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" FontSize="14"
+                                                   Text="{Binding Path=FullName}" 
+                                                   HorizontalAlignment="Center" Margin="2"/>                             
+                                        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="14"
+                                                   Text="Google Schoolar" HorizontalAlignment="Center"
+                                                   Margin="2"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="2" FontSize="14"
+                                                   Text="Scopus" HorizontalAlignment="Center"
+                                                   Margin="2"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="3" FontSize="14"
+                                                   Text="Publons" HorizontalAlignment="Center"
+                                                   Margin="2"/>
+                                        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14"
+                                                   Text="Індекс Гірша:"
+                                                   Margin="2"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="0" FontSize="14"
+                                                   Text="Індекс Гірша за 5 років:"
+                                                   Margin="2"/>
+                                        <TextBlock Grid.Row="2" Grid.Column="1" FontSize="14"
+                                                   Text="{Binding Path=GoogleHIndex}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="1" FontSize="14"
+                                                   Text="{Binding Path=GoogleHIndex5}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+
+                                        <TextBlock Grid.Row="2" Grid.Column="2" FontSize="14"
+                                                   Text="{Binding Path=ScopusHIndex}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="2" FontSize="14"
+                                                   Text="{Binding Path=ScopusHIndex5}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="2" Grid.Column="3" FontSize="14"
+                                                   Text="{Binding Path=PublonsHIndex}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="3" FontSize="14"
+                                                   Text="{Binding Path=PublonsHIndex5}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+                                        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button Click="ResearcherChairDeleteButtonOnClick" MinWidth="100"
+                                                Grid.Column="1" Name="DeleteButton"
+                                                Tag="{Binding Path=ResearcherId}" Content="Видалити"
+                                                Margin="2"></Button>
+                                            <Button Click="ResearcherChairEditButtonOnClick" MinWidth="100"
+                                                Grid.Column="0" Name="EditButton"
+                                                Tag="{Binding Path=ResearcherId}" Content="Редагувати"
+                                                Margin="2"></Button>
+                                        </Grid>
+                                    </Grid>                                    
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Button Name="ResearcherChairCreateButton" Margin="2 0 0 0" 
+                                Content="Створити викладача" Grid.Row="2"></Button>
+
+                    </Grid>                
+                </Grid>
+            </TabItem.Content>
+        </TabItem>
+
+        <TabItem Name="Researchers" Header="Викладачі">
+            <TabItem.Content>
+                <Grid>                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.475*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>                            
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14"
+                                   Text="Прізвище:" Width="Auto"></TextBlock>
+                        <ComboBox Name="LastNameBox" Grid.Row="0" Grid.Column="1"
+                                  FontSize="14" MinWidth="100" IsEditable="True" 
+                                  ShouldPreserveUserEnteredPrefix="False"></ComboBox>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="14" 
+                                   Text="Ім'я:" Width="Auto"></TextBlock>
+                        <ComboBox Name="FirstNameBox" Grid.Row="1" Grid.Column="1"
+                                  FontSize="14" MinWidth="100" IsEditable="True"
+                                  ShouldPreserveUserEnteredPrefix="False"></ComboBox>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14" 
+                                   Text="По-Батькові:" Width="Auto"></TextBlock>
+                        <ComboBox Name="MiddleNameBox" Grid.Row="2" Grid.Column="1"
+                                  FontSize="14" MinWidth="100" IsEditable="True"
+                                  ShouldPreserveUserEnteredPrefix="False"></ComboBox>      
+                        
+                        <Button MinWidth="100" Name="SearchButton" Grid.Row="3" Grid.Column="0" 
+                                Grid.ColumnSpan="2" Content="Пошук" VerticalAlignment="Top"
+                                HorizontalAlignment="Center"></Button>
+
+                    </Grid>
+                    <GridSplitter Grid.Column="1" ShowsPreview="False" Width="5"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ListBox Name="ListBoxResearcher" Grid.Row="0" Background="{x:Null}"
+                                 BorderThickness="0" HorizontalContentAlignment="Stretch"
+                                 ScrollViewer.CanContentScroll="False"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" FontSize="14"
+                                                   Text="{Binding Path=FullName}" 
+                                                   HorizontalAlignment="Center" Margin="2"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="14"
+                                                   Text="Google Schoolar" HorizontalAlignment="Center"
+                                                   Margin="2"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="2" FontSize="14"
+                                                   Text="Scopus" HorizontalAlignment="Center"
+                                                   Margin="2"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="3" FontSize="14"
+                                                   Text="Publons" HorizontalAlignment="Center"
+                                                   Margin="2"/>
+                                        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14"
+                                                   Text="Індекс Гірша:"
+                                                   Margin="2"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="0" FontSize="14"
+                                                   Text="Індекс Гірша за 5 років:"
+                                                   Margin="2"/>
+                                        <TextBlock Grid.Row="2" Grid.Column="1" FontSize="14"
+                                                   Text="{Binding Path=GoogleHIndex}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="1" FontSize="14"
+                                                   Text="{Binding Path=GoogleHIndex5}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+
+                                        <TextBlock Grid.Row="2" Grid.Column="2" FontSize="14"
+                                                   Text="{Binding Path=ScopusHIndex}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="2" FontSize="14"
+                                                   Text="{Binding Path=ScopusHIndex5}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="2" Grid.Column="3" FontSize="14"
+                                                   Text="{Binding Path=PublonsHIndex}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="3" FontSize="14"
+                                                   Text="{Binding Path=PublonsHIndex5}"
+                                                   Margin="2" HorizontalAlignment="Center"/>
+                                        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button Click="ResearcherDeleteButtonOnClick" MinWidth="100"
+                                                Grid.Column="1" Name="DeleteButton"
+                                                Tag="{Binding Path=ResearcherId}" Content="Видалити"
+                                                Margin="2"></Button>
+                                            <Button Click="ResearcherEditButtonOnClick" MinWidth="100"
+                                                Grid.Column="0" Name="EditButton"
+                                                Tag="{Binding Path=ResearcherId}" Content="Редагувати"
+                                                Margin="2"></Button>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Button Name="ResearcherCreateButton" Margin="2 0 0 0" 
+                                Content="Створити викладача" Grid.Row="1"></Button>
+                    </Grid>
+                </Grid>
+            </TabItem.Content>
+        </TabItem>
+
+        <TabItem Name="CheckData" Header="Перевірка даних">
+            <TabItem.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Name="CheckButton" 
+                            Content="Завантажити дані для перевірки" Grid.Row="0"/>
+
+                    <Button Name="DownloadButton" 
+                            Content="Завантажити дані для збереження" Grid.Row="1"/>
+
+                    <ListView Name="DataList" Grid.Row="2">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Faculty}" Width="100">Факультет</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Chair}" Width="100">Кафедра</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}" Width="100">Прізвище</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=FirstName}" Width="100">і'мя</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=MiddleName}" Width="100">По-батькові</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=GoogleHIndexOld}" Width="105">Вненсений індекс</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=GoogleHIndex}" Width="100">Індекс Гірша</GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem.Content>
+        </TabItem>
+
+    </TabControl>
 </Window>

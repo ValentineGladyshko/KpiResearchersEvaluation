@@ -1,4 +1,4 @@
-namespace KpiResearchersEvaluation.DatabaseLibrary.DatabaseModel
+namespace DatabaseLibrary.DatabaseModel
 {
     using System;
     using System.Collections.Generic;
@@ -6,21 +6,21 @@ namespace KpiResearchersEvaluation.DatabaseLibrary.DatabaseModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Faculties
+    public partial class Type
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Faculties()
+        public Type()
         {
-            Chairs = new HashSet<Chairs>();
+            Accounts = new HashSet<Account>();
         }
 
-        [Key]
-        public int FacultyId { get; set; }
+        public int TypeId { get; set; }
 
+        [Required]
         [StringLength(50)]
-        public string FacultyName { get; set; }
+        public string TypeName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Chairs> Chairs { get; set; }
+        public virtual ICollection<Account> Accounts { get; set; }
     }
 }

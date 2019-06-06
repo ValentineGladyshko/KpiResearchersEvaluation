@@ -1,4 +1,4 @@
-namespace KpiResearchersEvaluation.DatabaseLibrary.DatabaseModel
+namespace DatabaseLibrary.DatabaseModel
 {
     using System;
     using System.Collections.Generic;
@@ -6,17 +6,16 @@ namespace KpiResearchersEvaluation.DatabaseLibrary.DatabaseModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class ResearcherOrcids
+    public partial class ResearcherOrcid
     {
-        [Key]
         public int ResearcherOrcidId { get; set; }
 
         public int ResearcherId { get; set; }
 
         public int OrcidAccountId { get; set; }
 
-        public virtual OrcidAccounts OrcidAccounts { get; set; }
+        public virtual OrcidAccount OrcidAccount { get; set; }
 
-        public virtual Researchers Researchers { get; set; }
+        public virtual Researcher Researcher { get; set; }
     }
 }
